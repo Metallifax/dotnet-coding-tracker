@@ -1,6 +1,7 @@
 using System;
+using static CodingTracker.utils.DbUtils;
 
-namespace CodingTracker
+namespace CodingTracker.model
 {
     public class CodingSession
     {
@@ -19,18 +20,17 @@ namespace CodingTracker
             _endTime = DateTime.Now;
             _duration = _endTime.Subtract(_startTime);
 
-            var conn = DbUtils.GenerateConnection();
-            var cmd = conn.CreateCommand();
-            var format = "yyyy-MM-dd HH:mm:ss";
-
             try
             {
+                using var conn = GenerateConnection();
+                using var cmd = conn.CreateCommand();
+                var format = "yyyy-MM-dd HH:mm:ss";
+                
                 cmd.CommandText =
                     "INSERT INTO Coding_Session (Start_Time, End_Time, Duration) VALUES" +
                     $" ('{_startTime.ToString(format)}', '{_endTime.ToString(format)}', {_duration.TotalSeconds})";
                 cmd.ExecuteNonQuery();
 
-                cmd = conn.CreateCommand();
                 cmd.CommandText = "SELECT * FROM Coding_Session ORDER BY ID DESC LIMIT 1";
                 var reader = cmd.ExecuteReader();
 
@@ -43,9 +43,6 @@ namespace CodingTracker
             {
                 Console.Out.WriteLine("Something went wrong: " + e);
             }
-
-
-            conn.Close();
         }
 
         public TimeSpan GetDuration() => _duration;
