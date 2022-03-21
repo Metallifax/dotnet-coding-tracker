@@ -6,7 +6,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "workingDirectory": "/home/matt/projects/csharp/csharp-academy/coding-tracker/CodingTracker/"
+      "workingDirectory": "../"
     }
   }
 }
