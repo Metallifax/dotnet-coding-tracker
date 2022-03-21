@@ -17,10 +17,16 @@ namespace CodingTracker.controller
                 cmd.CommandText = "SELECT * FROM Coding_Session";
                 var reader = cmd.ExecuteReader();
                 var sessionList = new List<List<object>>();
+
                 while (reader.Read())
                 {
+                    var duration = TimeSpan.FromSeconds(reader.GetFloat(3));
+
                     sessionList.Add(new List<object>
-                        {reader.GetInt32(0), reader.GetDateTime(1), reader.GetDateTime(2), reader.GetFloat(3)});
+                    {
+                        reader.GetInt32(0), reader.GetDateTime(1), reader.GetDateTime(2), duration.Hours,
+                        duration.Minutes, duration.Seconds
+                    });
                 }
 
                 Print();
@@ -40,7 +46,7 @@ namespace CodingTracker.controller
                 {
                     var choice =
                         PromptForInput(
-                            "Are you sure you would like to begin a coding session?" +
+                            "\nAre you sure you would like to begin a coding session?" +
                             "\n1. Yes\n2. No\nYour choice: ");
 
                     if (string.IsNullOrEmpty(choice))
@@ -75,7 +81,6 @@ namespace CodingTracker.controller
                     var duration = session.GetDuration();
                     Print(
                         $"Session time:  Hours: {duration.Hours}, Minutes: {duration.Minutes}, Seconds: {duration.Seconds}");
-                    Print("Session Id" + session.Id);
                     break;
                 }
             }
