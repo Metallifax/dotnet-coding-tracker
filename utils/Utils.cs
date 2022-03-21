@@ -1,9 +1,5 @@
 #nullable enable
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using ConsoleTableExt;
 using static CodingTracker.controller.CodingSessionsController;
 
 namespace CodingTracker.utils

@@ -20,7 +20,7 @@ namespace CodingTracker.utils
             {HeaderCharMapPositions.BorderRight, '│'},
             {HeaderCharMapPositions.BorderBottom, '═'},
             {HeaderCharMapPositions.BorderLeft, '│'},
-            {HeaderCharMapPositions.Divider, ' '},
+            {HeaderCharMapPositions.Divider, ' '}
         };
 
         public static void DisplaySessionsAsTable(List<List<object>> list)

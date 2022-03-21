@@ -5,7 +5,7 @@ namespace CodingTracker.model
 {
     public class CodingSession
     {
-        public int Id;
+        private int _id;
         private DateTime _startTime;
         private DateTime _endTime;
         private TimeSpan _duration;
@@ -24,7 +24,7 @@ namespace CodingTracker.model
             {
                 using var conn = GenerateConnection();
                 using var cmd = conn.CreateCommand();
-                var format = "yyyy-MM-dd HH:mm:ss";
+                const string format = "yyyy-MM-dd HH:mm:ss";
                 
                 cmd.CommandText =
                     "INSERT INTO Coding_Session (Start_Time, End_Time, Duration) VALUES" +
@@ -36,7 +36,7 @@ namespace CodingTracker.model
 
                 while (reader.Read())
                 {
-                    Id = reader.GetInt32(0);
+                    _id = reader.GetInt32(0);
                 }
             }
             catch (Exception e)
