@@ -11,6 +11,7 @@ namespace CodingTracker.utils
 
         public static void DisplayTimer()
         {
+            _totalSeconds = 0;
             _timer = new Timer();
             _timer.Interval = 1000;
             _timer.Elapsed += OnTimedEvent;

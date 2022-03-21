@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CodingTracker.model;
+using CodingTracker.utils;
 using static CodingTracker.utils.DbUtils;
 using static CodingTracker.utils.TableUtils;
 using static CodingTracker.utils.TimeElapsed;
@@ -78,7 +79,7 @@ namespace CodingTracker.controller
                     session.StartSession();
 
                     DisplayTimer();
-                    
+
                     session.StopSession();
 
                     var duration = session.GetDuration();
@@ -86,6 +87,44 @@ namespace CodingTracker.controller
                         $"Session time:  Hours: {duration.Hours}, Minutes: {duration.Minutes}, Seconds: {duration.Seconds}");
                     break;
                 }
+            }
+            catch (Exception e)
+            {
+                Print(ReturnError(e));
+            }
+        }
+
+        public static void DeleteAllCodingSessions()
+        {
+            try
+            {
+                while (true)
+                {
+                    var choice =
+                        PromptForInput(
+                            "\nAre you sure you would like to delete all coding sessions?" +
+                            "\n1. Yes\n2. No\nYour choice: ");
+
+                    if (string.IsNullOrEmpty(choice))
+                    {
+                        Print("Choice cannot be empty");
+                    }
+
+                    if (Convert.ToInt32(choice) == 1)
+                    {
+                        break;
+                    }
+
+                    if (Convert.ToInt32(choice) == 2)
+                    {
+                        return;
+                    }
+
+                    Print("Could not understand!");
+                }
+
+                DeleteDatabaseFile();
+                Print("Sessions successfully dropped!");
             }
             catch (Exception e)
             {

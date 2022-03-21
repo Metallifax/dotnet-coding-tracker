@@ -9,7 +9,7 @@ namespace CodingTracker.utils
         private const string Title = "~* Welcome to Coding Tracker *~";
 
         private const string Menu = "\n~ Main Menu ~\nPlease select an activity:\n1. View your coding sessions\n" +
-                                    "2. Start a session\n3. Quit";
+                                    "2. Start a session\n3. Clear all sessions\n4. Quit";
 
         public static void AppLoop()
         {
@@ -30,6 +30,9 @@ namespace CodingTracker.utils
                             RecordACodingSession();
                             break;
                         case 3:
+                            DeleteAllCodingSessions();
+                            break;
+                        case 4:
                             Print("Goodbye!");
                             return;
                         default:
