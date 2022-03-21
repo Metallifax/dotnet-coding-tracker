@@ -5,7 +5,7 @@ namespace CodingTracker.utils
 {
     public static class DbUtils
     {
-        private const string DbPath = "database.db";
+        private static readonly string DbPath = Path.GetFullPath("./") + "database.db";
 
         public static SQLiteConnection GenerateConnection()
         {

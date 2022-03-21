@@ -6,7 +6,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "workingDirectory": "../"
+      "workingDirectory": "/Users/mathewforgione/RiderProjects/dotnet-coding-tracker"
     }
   }
 }
