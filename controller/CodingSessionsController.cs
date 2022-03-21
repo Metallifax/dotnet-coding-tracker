@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using CodingTracker.model;
-using CodingTracker.utils;
 using static CodingTracker.utils.DbUtils;
 using static CodingTracker.utils.TableUtils;
 using static CodingTracker.utils.TimeElapsed;

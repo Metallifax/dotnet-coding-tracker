@@ -4,7 +4,7 @@ using static CodingTracker.utils.Utils;
 
 namespace CodingTracker.utils
 {
-    public class TimeElapsed
+    public static class TimeElapsed
     {
         private static Timer _timer;
         private static int _totalSeconds;
@@ -23,7 +23,7 @@ namespace CodingTracker.utils
             _timer.Enabled = false;
         }
 
-        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        private static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             _totalSeconds++;
             var time = TimeSpan.FromSeconds(_totalSeconds);
