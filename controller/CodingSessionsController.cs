@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CodingTracker.model;
 using static CodingTracker.utils.DbUtils;
+using static CodingTracker.utils.TableUtils;
 using static CodingTracker.utils.Utils;
 
 namespace CodingTracker.controller
@@ -25,12 +26,13 @@ namespace CodingTracker.controller
                     sessionList.Add(new List<object>
                     {
                         reader.GetInt32(0), reader.GetDateTime(1), reader.GetDateTime(2), duration.Hours,
-                        duration.Minutes, duration.Seconds
+                        duration.Minutes, duration.Seconds, duration
                     });
                 }
 
                 Print();
-                DisplayListAsTable(sessionList);
+                DisplaySessionsAsTable(sessionList);
+                DisplayTotalCodingTimeAsTable(sessionList);
             }
             catch (Exception e)
             {

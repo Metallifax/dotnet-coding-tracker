@@ -1,6 +1,8 @@
 #nullable enable
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using ConsoleTableExt;
 using static CodingTracker.controller.CodingSessionsController;
 
@@ -60,38 +62,6 @@ namespace CodingTracker.utils
         public static void Print(string? message = null)
         {
             Console.Out.WriteLine(message);
-        }
-
-        public static bool NameAndTimeIsInvalid(string? habitName, string? habitTime)
-        {
-            if (string.IsNullOrEmpty(habitName))
-            {
-                Print("Habit name must not be empty");
-                return true;
-            }
-
-            if (string.IsNullOrEmpty(habitTime))
-            {
-                Print("Habit time value must not be empty");
-                return true;
-            }
-
-            if (Convert.ToInt32(habitTime) <= 0)
-            {
-                Print("Habit time must be greater than 0");
-                return true;
-            }
-
-            return false;
-        }
-
-        public static void DisplayListAsTable(List<List<object>> list)
-        {
-            ConsoleTableBuilder
-                .From(list)
-                .WithTitle("Your Coding Sessions")
-                .WithFormat(ConsoleTableBuilderFormat.Alternative)
-                .ExportAndWriteLine();
         }
     }
 }
