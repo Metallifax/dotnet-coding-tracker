@@ -1,12 +1,16 @@
+#nullable enable
 using System;
+using System.Collections.Generic;
+using ConsoleTableExt;
+using static CodingTracker.controller.CodingSessionsController;
 
 namespace CodingTracker.utils
 {
     public static class Utils
     {
-        private const string Title = "~ Welcome to Coding Tracker ~";
+        private const string Title = "~* Welcome to Coding Tracker *~";
 
-        private const string Menu = "\nPlease select an activity:\n1. View your coding sessions\n" +
+        private const string Menu = "\n~ Main Menu ~\nPlease select an activity:\n1. View your coding sessions\n" +
                                     "2. Start a session\n3. Quit";
 
         public static void AppLoop()
@@ -22,10 +26,10 @@ namespace CodingTracker.utils
                     switch (Convert.ToInt32(choice))
                     {
                         case 1:
-                            Print("View your sessions");
+                            ReadCodingSessions();
                             break;
                         case 2:
-                            Print("Start a session");
+                            RecordACodingSession();
                             break;
                         case 3:
                             Print("Goodbye!");
@@ -53,7 +57,7 @@ namespace CodingTracker.utils
             return "Oops.... Something went wrong!: " + exception.Message;
         }
 
-        public static void Print(string message)
+        public static void Print(string? message = null)
         {
             Console.Out.WriteLine(message);
         }
@@ -79,6 +83,15 @@ namespace CodingTracker.utils
             }
 
             return false;
+        }
+
+        public static void DisplayListAsTable(List<List<object>> list)
+        {
+            ConsoleTableBuilder
+                .From(list)
+                .WithTitle("Your Coding Sessions")
+                .WithFormat(ConsoleTableBuilderFormat.Alternative)
+                .ExportAndWriteLine();
         }
     }
 }
