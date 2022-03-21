@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CodingTracker.model;
 using static CodingTracker.utils.DbUtils;
 using static CodingTracker.utils.TableUtils;
+using static CodingTracker.utils.TimeElapsed;
 using static CodingTracker.utils.Utils;
 
 namespace CodingTracker.controller
@@ -76,8 +77,8 @@ namespace CodingTracker.controller
                     var session = new CodingSession();
                     session.StartSession();
 
-                    Print("Press enter to end coding session");
-                    Console.ReadLine();
+                    DisplayTimer();
+                    
                     session.StopSession();
 
                     var duration = session.GetDuration();
