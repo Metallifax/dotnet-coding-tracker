@@ -10,7 +10,7 @@ looking tables in the coding sessions viewer.
 ![Coding Tracker example photo showing the user interface](example-image.png)
 
 In order to persist the data for the database, you can clone this repository and change Properties/launchSettings.json -> workingDirectory to
-be the directory in which it was cloned to.
+be the full path to the directory in which it was cloned to.
 
 You can then either use `dotnet` to run it:
 
